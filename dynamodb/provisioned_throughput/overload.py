@@ -5,7 +5,8 @@ dynamodb = boto3.client('dynamodb')
 
 def write(artist, song_title, price, studio, address):
     response = dynamodb.put_item(
-        TableName='MusicTest', 
+        TableName='Music', 
+        ReturnConsumedCapacity='TOTAL',
         Item={
             'Artist':{'S':artist},
             'SongTitle':{'S':song_title},
@@ -18,7 +19,8 @@ def write(artist, song_title, price, studio, address):
 
 def delete(artist, song_title):
     response = dynamodb.delete_item(
-        TableName='MusicTest', 
+        TableName='Music', 
+        ReturnConsumedCapacity='TOTAL',
         Key={
             'Artist':{'S':artist},
             'SongTitle':{'S':song_title}

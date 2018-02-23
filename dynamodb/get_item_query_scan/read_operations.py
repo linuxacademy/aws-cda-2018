@@ -8,7 +8,7 @@ def upload():
         songs = json.load(songfile)
     for song in songs:
         response = dynamodb.put_item(
-            TableName='MusicTest', 
+            TableName='Music', 
             Item={
                 'Artist':{'S':song['Artist']},
                 'SongTitle':{'S':song['SongTitle']},
@@ -33,7 +33,7 @@ upload()
 
 print('GetItem:')
 dynamodb.get_item(
-    TableName='MusicTest', 
+    TableName='Music', 
     Key={
         'Artist':{'S':"Anthony Haslett"},
         'SongTitle':{'S':"December Lavender"}
@@ -44,7 +44,7 @@ dynamodb.get_item(
 
 print('Query:')
 dynamodb.query(
-    TableName="MusicTest",
+    TableName="Music",
     Select='ALL_ATTRIBUTES',
     ReturnConsumedCapacity='TOTAL',
     ExpressionAttributeValues={
@@ -56,7 +56,7 @@ dynamodb.query(
 
 
 dynamodb.query(
-    TableName="MusicTest",
+    TableName="Music",
     Select='ALL_ATTRIBUTES',
     ReturnConsumedCapacity='TOTAL',
     ExpressionAttributeValues={
@@ -70,7 +70,7 @@ dynamodb.query(
 
 print('Scan:')
 dynamodb.scan(
-    TableName="MusicTest",
+    TableName="Music",
     Select='ALL_ATTRIBUTES',
     ReturnConsumedCapacity='TOTAL',
     ExpressionAttributeValues={
