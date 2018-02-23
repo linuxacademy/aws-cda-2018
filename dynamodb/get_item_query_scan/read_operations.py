@@ -31,8 +31,10 @@ upload()
 #     "address": "886 Locust Avenue, Suitland, Vermont, 8689"
 # },
 
+print('')
+print('')
 print('GetItem:')
-dynamodb.get_item(
+gi_res = dynamodb.get_item(
     TableName='Music', 
     Key={
         'Artist':{'S':"Anthony Haslett"},
@@ -40,10 +42,13 @@ dynamodb.get_item(
     },
     ReturnConsumedCapacity='TOTAL'
 )
+print(gi_res)
+print('')
+print('')
 
 
 print('Query:')
-dynamodb.query(
+q_res=dynamodb.query(
     TableName="Music",
     Select='ALL_ATTRIBUTES',
     ReturnConsumedCapacity='TOTAL',
@@ -54,8 +59,12 @@ dynamodb.query(
     KeyConditionExpression='Artist = :p_key AND SongTitle = :s_key'
 )
 
+print(q_res)
+print('')
+print('')
 
-dynamodb.query(
+print('Query with filter:')
+qfil_res=dynamodb.query(
     TableName="Music",
     Select='ALL_ATTRIBUTES',
     ReturnConsumedCapacity='TOTAL',
@@ -66,10 +75,12 @@ dynamodb.query(
     KeyConditionExpression='Artist = :p_key',
     FilterExpression='contains(price, :num)'
 )
-
+print(qfil_res)
+print('')
+print('')
 
 print('Scan:')
-dynamodb.scan(
+s_res=dynamodb.scan(
     TableName="Music",
     Select='ALL_ATTRIBUTES',
     ReturnConsumedCapacity='TOTAL',
@@ -79,3 +90,4 @@ dynamodb.scan(
     },
     FilterExpression='Artist = :p_key AND SongTitle = :s_key'
 )
+print(s_res)
