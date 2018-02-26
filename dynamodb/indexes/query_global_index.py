@@ -1,5 +1,4 @@
 import boto3
-import json
 
 dynamodb = boto3.client('dynamodb')
 
