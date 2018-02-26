@@ -15,3 +15,4 @@ q_res=dynamodb.query(
     },
     KeyConditionExpression='studio = :p_key AND price > :s_key'
 )
+print(q_res)

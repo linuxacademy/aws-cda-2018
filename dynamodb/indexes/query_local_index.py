@@ -14,3 +14,4 @@ q_res=dynamodb.query(
     },
     KeyConditionExpression='Artist = :p_key AND price > :s_key'
 )
+print(q_res)
