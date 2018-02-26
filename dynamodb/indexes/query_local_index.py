@@ -11,7 +11,7 @@ q_res=dynamodb.query(
     ReturnConsumedCapacity='TOTAL',
     ExpressionAttributeValues={
         ":p_key":{"S":"Anthony Haslett"},
-        ":s_key":{"N":"15"}
+        ":s_key":{"S":"15"}
     },
     KeyConditionExpression='Artist = :p_key AND price > :s_key'
 )
