@@ -10,8 +10,8 @@ q_res=dynamodb.query(
     Select='ALL_ATTRIBUTES',
     ReturnConsumedCapacity='TOTAL',
     ExpressionAttributeValues={
-        ":p_key":{"S":"GEEKWAGON"},
-        ":s_key":{"N":"10"}
+        ":p_key":{"S":"SLAX"},
+        ":s_key":{"S":"10"}
     },
     KeyConditionExpression='studio = :p_key AND price > :s_key'
 )
