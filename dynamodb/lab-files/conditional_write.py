@@ -11,7 +11,7 @@ response = dynamodb.update_item(
     },
     UpdateExpression='SET price = :val',
     ExpressionAttributeValues={
-        ':val': {'N': '15.37'}, 
+        ':val': {'N': '15.37'},  # Make sure we keep this line the same
         ':currval': {'N': '1.2345'}  # What was the current value?
     },
     ConditionExpression='price = :currval',

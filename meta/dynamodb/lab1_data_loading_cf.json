@@ -13,7 +13,101 @@
   },
  
   "Resources" : {
- 
+    "StudentEC2InstanceRole": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "sts:AssumeRole"
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "ec2.amazonaws.com"
+                ]
+              }
+            }
+          ]
+        },
+        "Path": "/"
+      },
+      "Type": "AWS::IAM::Role"
+    },
+    "StudentEC2InstancePolicy": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "dynamodb:*",
+                    "dax:*",
+                    "application-autoscaling:DeleteScalingPolicy",
+                    "application-autoscaling:DeregisterScalableTarget",
+                    "application-autoscaling:DescribeScalableTargets",
+                    "application-autoscaling:DescribeScalingActivities",
+                    "application-autoscaling:DescribeScalingPolicies",
+                    "application-autoscaling:PutScalingPolicy",
+                    "application-autoscaling:RegisterScalableTarget",
+                    "cloudwatch:DeleteAlarms",
+                    "cloudwatch:DescribeAlarmHistory",
+                    "cloudwatch:DescribeAlarms",
+                    "cloudwatch:DescribeAlarmsForMetric",
+                    "cloudwatch:GetMetricStatistics",
+                    "cloudwatch:ListMetrics",
+                    "cloudwatch:PutMetricAlarm",
+                    "datapipeline:ActivatePipeline",
+                    "datapipeline:CreatePipeline",
+                    "datapipeline:DeletePipeline",
+                    "datapipeline:DescribeObjects",
+                    "datapipeline:DescribePipelines",
+                    "datapipeline:GetPipelineDefinition",
+                    "datapipeline:ListPipelines",
+                    "datapipeline:PutPipelineDefinition",
+                    "datapipeline:QueryObjects",
+                    "ec2:DescribeVpcs",
+                    "ec2:DescribeSubnets",
+                    "ec2:DescribeSecurityGroups",
+                    "iam:GetRole",
+                    "iam:ListRoles",
+                    "sns:CreateTopic",
+                    "sns:DeleteTopic",
+                    "sns:ListSubscriptions",
+                    "sns:ListSubscriptionsByTopic",
+                    "sns:ListTopics",
+                    "sns:Subscribe",
+                    "sns:Unsubscribe",
+                    "sns:SetTopicAttributes",
+                    "lambda:CreateFunction",
+                    "lambda:ListFunctions",
+                    "lambda:ListEventSourceMappings",
+                    "lambda:CreateEventSourceMapping",
+                    "lambda:DeleteEventSourceMapping",
+                    "lambda:GetFunctionConfiguration",
+                    "lambda:DeleteFunction"
+                ],
+                "Resource": "*"
+            }
+          ]
+        },
+        "PolicyName": "StudentEC2InstancePolicy",
+        "Roles": [
+          {
+            "Ref": "StudentEC2InstanceRole"
+          }
+        ]
+      }
+    },
+    "IamInstanceProfile" : {
+      "Type" : "AWS::IAM::InstanceProfile",
+      "Properties" : {
+        "Path" : "/",
+        "Roles" : [ { "Ref" : "StudentEC2InstanceRole" } ]
+      }
+    },
     "DdbExampleTable" : {
       "Type" : "AWS::DynamoDB::Table",
       "Properties" : {
@@ -41,7 +135,7 @@
           "ReadCapacityUnits" : "1",
           "WriteCapacityUnits" : "1"
         },
-        "TableName" : "MusicExample"
+        "TableName" : "MusicAlley"
         }
     },
  
@@ -249,6 +343,7 @@
                 "yum -y install wget\n",
                 "pip3.6 install awscli --upgrade\n",
                 "pip3.6 install boto3 --upgrade\n",
+                "aws configure set default.region us-east-1\n",
                 "wget https://raw.githubusercontent.com/linuxacademy/aws-cda-2018/master/dynamodb/lab-files/songs.json\n",
                 "wget https://raw.githubusercontent.com/linuxacademy/aws-cda-2018/master/dynamodb/lab-files/upload.py\n",
                 "wget https://raw.githubusercontent.com/linuxacademy/aws-cda-2018/master/dynamodb/lab-files/conditional_write.py\n",
@@ -264,7 +359,8 @@
               "DeviceIndex"              : "0",
               "DeleteOnTermination"      : "true",
               "SubnetId"                 : { "Ref" : "PublicSubnet1" }
-            }]
+            }],
+            "IamInstanceProfile": { "Ref": "IamInstanceProfile"}
         }
     }
    },
