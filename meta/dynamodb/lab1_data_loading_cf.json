@@ -343,15 +343,17 @@
                 "yum -y install wget\n",
                 "pip3.6 install awscli --upgrade\n",
                 "pip3.6 install boto3 --upgrade\n",
-                "aws configure set default.region us-east-1\n",
+                "wget https://raw.githubusercontent.com/linuxacademy/aws-cda-2018/master/meta/config/config\n",
                 "wget https://raw.githubusercontent.com/linuxacademy/aws-cda-2018/master/dynamodb/lab-files/songs.json\n",
                 "wget https://raw.githubusercontent.com/linuxacademy/aws-cda-2018/master/dynamodb/lab-files/upload.py\n",
                 "wget https://raw.githubusercontent.com/linuxacademy/aws-cda-2018/master/dynamodb/lab-files/conditional_write.py\n",
                 "wget https://raw.githubusercontent.com/linuxacademy/aws-cda-2018/master/dynamodb/lab-files/atomic_counter.py\n",
                 "mv songs.json /home/cloud_user/\n",
                 "mv upload.py /home/cloud_user/\n",
-                "mv conditional_write.py /home/cloud_user\n",
-                "mv atomic_counter.py /home/cloud_user\n"
+                "mv conditional_write.py /home/cloud_user/\n",
+                "mv atomic_counter.py /home/cloud_user/\n",
+                "mkdir /home/cloud_user/.aws\n",
+                "mv config /home/cloud_user/.aws/\n"
             ]]}},
             "NetworkInterfaces" : [{
               "GroupSet"                 : [{ "Ref" : "EC2SecurityGroup" }],
