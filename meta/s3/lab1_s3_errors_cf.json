@@ -266,7 +266,9 @@
                 "yum -y install wget\n",
                 "yum -y install python35-pip\n",
                 "pip-3.5 install boto3 --upgrade\n",
+                "wget https://raw.githubusercontent.com/linuxacademy/aws-cda-2018/master/s3/lab-files/s3_error_examples.py\n",
                 "wget https://raw.githubusercontent.com/linuxacademy/aws-cda-2018/master/meta/config/config\n",
+                "mv s3_error_examples.py /home/cloud_user/\n",
                 "mkdir /home/cloud_user/.aws\n",
                 "mv config /home/cloud_user/.aws/\n"
             ]]}},
