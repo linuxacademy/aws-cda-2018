@@ -23,8 +23,6 @@
             "Statement": [{
                 "Effect": "Allow",
                 "Action": [
-                    "dynamodb:*",
-                    "dax:*",
                     "application-autoscaling:DeleteScalingPolicy",
                     "application-autoscaling:DeregisterScalableTarget",
                     "application-autoscaling:DescribeScalableTargets",
@@ -42,15 +40,6 @@
                     "logs:CreateLogGroup",
                     "logs:CreateLogStream",
                     "logs:PutLogEvents",
-                    "datapipeline:ActivatePipeline",
-                    "datapipeline:CreatePipeline",
-                    "datapipeline:DeletePipeline",
-                    "datapipeline:DescribeObjects",
-                    "datapipeline:DescribePipelines",
-                    "datapipeline:GetPipelineDefinition",
-                    "datapipeline:ListPipelines",
-                    "datapipeline:PutPipelineDefinition",
-                    "datapipeline:QueryObjects",
                     "ec2:DescribeVpcs",
                     "ec2:DescribeSubnets",
                     "ec2:DescribeSecurityGroups",
@@ -63,6 +52,7 @@
                     "sns:ListTopics",
                     "sns:Subscribe",
                     "sns:Unsubscribe",
+                    "sns:Publish",
                     "sns:SetTopicAttributes",
                     "lambda:*",
                     "s3:*"
