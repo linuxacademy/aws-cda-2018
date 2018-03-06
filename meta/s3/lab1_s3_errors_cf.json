@@ -262,9 +262,10 @@
                 "#!/bin/bash\n",
                 "/bin/echo '%password%' | /bin/passwd cloud_user --stdin\n",
                 "yum -y update\n",
-                "yum -y install python35",
+                "yum -y install python35\n",
                 "yum -y install wget\n",
-                "pip-3.5 install boto3 --upgrade",
+                "yum -y install python35-pip\n",
+                "pip-3.5 install boto3 --upgrade\n",
                 "wget https://raw.githubusercontent.com/linuxacademy/aws-cda-2018/master/meta/config/config\n",
                 "mkdir /home/cloud_user/.aws\n",
                 "mv config /home/cloud_user/.aws/\n"
