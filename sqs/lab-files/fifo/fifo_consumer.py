@@ -20,7 +20,8 @@ while i < 10000:
         WaitTimeSeconds=10
     )
     print(rec_res)
-    time.sleep(5)
+    # If our task takes too long we can't delete it
+    # time.sleep(5)
     del_res = sqs.delete_message(
         QueueUrl=QUEUE_URL,
         ReceiptHandle=rec_res['Messages'][0]['ReceiptHandle']
