@@ -1,0 +1,1 @@
+QUEUE_URL = 'https://queue.amazonaws.com/218856049422/mynewq'

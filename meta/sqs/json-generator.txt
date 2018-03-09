@@ -5,6 +5,7 @@
     name: '{{firstName()}} {{surname()}}',
     email: function () {
       return this.name.toLowerCase().replace(' ','') + ('@thepenguinconsultingfirm.com');
-    }
+    },
+    donation: '{{integer(100, 999)}}.{{integer(00, 99)}}'
   }
 ]
