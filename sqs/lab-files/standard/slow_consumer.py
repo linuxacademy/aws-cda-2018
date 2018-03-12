@@ -16,15 +16,17 @@ while i < 10000:
             'All',
         ],
         MaxNumberOfMessages=1,
-        VisibilityTimeout=5,
+        VisibilityTimeout=20,
         WaitTimeSeconds=10
     )
-    print(rec_res)
-    time.sleep(5)
     del_res = sqs.delete_message(
         QueueUrl=QUEUE_URL,
         ReceiptHandle=rec_res['Messages'][0]['ReceiptHandle']
     )
-    print("DELETED:")
-    print(del_res)
-    time.sleep(5)
+    print("RECIEVED MESSAGE (SLOW CONSUMER):")
+    print('FROM PRODUCER: ' + rec_res['Messages'][0]['MessageAttributes']['Producer']['StringValue'])
+    print('JOB TYPE: ' + rec_res['Messages'][0]['MessageAttributes']['JobType']['StringValue'])
+    print('BODY: ' + rec_res['Messages'][0]['Body'])
+    print("DELETED MESSAGE (SLOW CONSUMER)")
+    print("")
+    time.sleep(8)

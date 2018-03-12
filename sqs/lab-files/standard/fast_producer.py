@@ -6,7 +6,7 @@ from sqs_url import QUEUE_URL
 # Create SQS client
 sqs = boto3.client('sqs')
 
-with open('data.json', 'r') as f:
+with open('fast_data.json', 'r') as f:
     data = json.loads(f.read())
 
 for i in data:
@@ -14,6 +14,7 @@ for i in data:
     response = sqs.send_message(
         QueueUrl=QUEUE_URL,
         MessageBody=msg_body,
+        DelaySeconds=2,
         MessageAttributes={
             'JobType': {
                 'DataType': 'String',
@@ -23,8 +24,8 @@ for i in data:
                 'DataType': 'String',
                 'StringValue': 'Fast'
             }
-        },
-        MessageGroupId='messageGroup1'
+        }
     )
+    print('Added a message with 1 second delay - FAST')
     print(response)
     time.sleep(1)
