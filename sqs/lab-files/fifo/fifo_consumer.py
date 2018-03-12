@@ -19,7 +19,6 @@ while i < 10000:
         VisibilityTimeout=5,
         WaitTimeSeconds=10
     )
-    print(rec_res)
     time.sleep(2)
     # If our task takes too long we can't delete it
     # time.sleep(5)
@@ -27,6 +26,10 @@ while i < 10000:
         QueueUrl=QUEUE_URL,
         ReceiptHandle=rec_res['Messages'][0]['ReceiptHandle']
     )
-    print("DELETED:")
-    print(del_res)
+    print("RECIEVED MESSAGE:")
+    print('FROM PRODUCER: ' + rec_res['Messages'][0]['MessageAttributes']['Producer']['StringValue'])
+    print('JOB TYPE: ' + rec_res['Messages'][0]['MessageAttributes']['JobType']['StringValue'])
+    print('BODY: ' + rec_res['Messages'][0]['Body'])
+    print("DELETED MESSAGE")
+    print("")
     time.sleep(1)

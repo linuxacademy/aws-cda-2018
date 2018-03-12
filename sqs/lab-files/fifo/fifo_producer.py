@@ -26,5 +26,6 @@ for i in data:
         },
         MessageGroupId='messageGroup1'
     )
+    print("Added Message:")
     print(response)
     time.sleep(1)
