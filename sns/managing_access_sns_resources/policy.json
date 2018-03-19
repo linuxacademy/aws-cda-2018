@@ -1,0 +1,22 @@
+{
+ "Version": "2008-10-17",
+ "Id": "example-ID",
+ "Statement": [
+  {
+   "Sid": "example-statement-ID",
+   "Effect": "Allow",
+   "Principal": {
+    "AWS":"*"  
+   },
+   "Action": [
+    "SNS:Publish"
+   ],
+   "Resource": "arn:aws:sns:us-east-1:476409174401:newTopic",
+   "Condition": {
+      "ArnLike": {          
+      "aws:SourceArn": "arn:aws:s3:*:*:cda2018snstest"    
+    }
+   }
+  }
+ ]
+}
