@@ -6,6 +6,9 @@ ssh -i "yourkeyfile.pem" ec2-user@your-e2-url-in-console.compute-1.amazonaws.com
 aws dynamodb list-tables
 aws lambda list-functions
 
+# Create a bucket with the aws cli
+aws s3 mb my-cool-cda-test-bucket 
+
 # Commands to run to get boto3 and use Python 
 sudo pip install boto3
 python
