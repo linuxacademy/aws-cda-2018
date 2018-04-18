@@ -1,0 +1,22 @@
+# This includes all the commands used in the video for creating Lambda function packages.
+
+python3 -m venv venv
+source venv/bin/activate
+pip install requests
+touch my_handler.py
+
+# Paste the code in from the handler in this folder.
+
+pip freeze > requirements.txt 
+pip install -r requirements.txt -t .
+deactivate
+rm -r venv
+
+# This may not work on some devices
+# You may need to open the folder containing the code in a different way
+# Remember - compress the files and folders of the code NOT the folder containing those files and the folder
+open .
+
+# After compressing the files and folders then upload this to the AWS console
+
+# Also, remember to update the handler configuration for your function
