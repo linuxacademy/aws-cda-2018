@@ -12,6 +12,7 @@
                 "cloudformation:DescribeStackResources",
                 "dynamodb:*",
                 "events:*",
+                "ses:*",
                 "iam:ListAttachedRolePolicies",
                 "iam:ListRolePolicies",
                 "iam:ListRoles",

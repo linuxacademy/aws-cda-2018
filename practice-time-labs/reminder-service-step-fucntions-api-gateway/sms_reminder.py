@@ -2,7 +2,6 @@ import boto3
 
 sns = boto3.client('sns')
 
-def handler(event, context):
-    data = json.loads(event['body'])
-    sns.publish(PhoneNumber=data['phone'], Message=data['message'])
+def lambda_handler(event, context):
+    sns.publish(PhoneNumber=event['phone'], Message=event['message'])
     return 'Success!'

@@ -24,12 +24,7 @@
                 "Resource": "arn:aws:logs:*:*:*"
             },
             {
-                "Effect": "Allow",
-                "Action": ["sns:*"],
-                "Resource": "*"
-            },
-            {
-              "Action": "ses:*",
+              "Action": ["ses:*", "states:*", "sns:*"],
               "Effect": "Allow",
               "Resource": "*"
             }]
