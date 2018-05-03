@@ -7,11 +7,12 @@ SFN_ARN = 'STEP_FUNCTION_ARN'
 
 sfn = boto3.client('stepfunctions')
 
-def handler(event, context):
+def lambda_handler(event, context):
     print('EVENT:')
     print(event)
     data = json.loads(event['body'])
-
+    data['waitSeconds'] = int(data['waitSeconds'])
+    
     # Validation Checks
     checks = []
     checks.append('waitSeconds' in data)
