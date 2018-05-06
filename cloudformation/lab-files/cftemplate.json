@@ -53,16 +53,23 @@
                 "LambdaRole",
                 "LambdaPolicy"
             ],
+            "Environment": {
+                "Variables" : {
+                    "expected": "Some text you expect on the site",
+                    "site": "https://www.somesite.com",
+                    "phone": "+15556668888"
+                }
+            },
             "Properties": {
                 "Code": {
                     "S3Bucket": "REPLACEME",
-                    "S3Key": "REPLACEMETOO"
+                    "S3Key": "canary.zip"
                 },
                 "Role": {
                     "Fn::GetAtt": ["LambdaRole", "Arn"]
                 },
                 "Timeout": 60,
-                "Handler": "lambda_function.lambda_handler",
+                "Handler": "canary.ping",
                 "Runtime": "python3.6",
                 "MemorySize": 128
             }
