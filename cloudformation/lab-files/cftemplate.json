@@ -1,0 +1,71 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "AWS CloudFormation Stack",
+    "Resources": {
+        "LambdaRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": ["lambda.amazonaws.com"]
+                            },
+                            "Action": ["sts:AssumeRole"]
+                        }
+                    ]
+                },
+                "Path": "/"
+            }
+        },
+        "LambdaPolicy": {
+            "DependsOn": [
+                "LambdaRole"
+            ],
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "LambdaLogsAndPerms",
+                "Roles": [
+                    {"Ref": "LambdaRole"}
+                ],
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": ["logs:*"],
+                            "Resource": ["arn:aws:logs:*:*:*"]
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": ["sns:*"],
+                            "Resource": ["*"]
+                        }
+                    ]
+                }
+            }
+        },
+        "LambdaCanaryFunction": {
+            "Type": "AWS::Lambda::Function",
+            "DependsOn": [
+                "LambdaRole",
+                "LambdaPolicy"
+            ],
+            "Properties": {
+                "Code": {
+                    "S3Bucket": "REPLACEME",
+                    "S3Key": "REPLACEMETOO"
+                },
+                "Role": {
+                    "Fn::GetAtt": ["LambdaRole", "Arn"]
+                },
+                "Timeout": 60,
+                "Handler": "lambda_function.lambda_handler",
+                "Runtime": "python3.6",
+                "MemorySize": 128
+            }
+        }
+    }
+}
