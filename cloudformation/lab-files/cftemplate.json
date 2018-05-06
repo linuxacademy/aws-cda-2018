@@ -53,14 +53,14 @@
                 "LambdaRole",
                 "LambdaPolicy"
             ],
-            "Environment": {
-                "Variables" : {
-                    "expected": "Some text you expect on the site",
-                    "site": "https://www.somesite.com",
-                    "phone": "+15556668888"
-                }
-            },
             "Properties": {
+                "Environment": {
+                    "Variables" : {
+                        "expected": "Some text you expect on the site",
+                        "site": "https://www.somesite.com",
+                        "phone": "+15556668888"
+                    }
+                },
                 "Code": {
                     "S3Bucket": "REPLACEME",
                     "S3Key": "canary.zip"

@@ -18,7 +18,10 @@ def ping(event, context):
     print('Checking {} at {}...'.format(SITE, event['time']))
     try:
         if not validate(str(urlopen(SITE).read())):
-            sns.publish(Message='This is not the site text you\'re looking for', Phone=PHONE)
+            sns.publish(
+                Message='This is not the site text you\'re looking for', 
+                PhoneNumber=PHONE
+            )
             raise Exception('Validation failed')
     except Exception as e:
         print('Check failed!')
