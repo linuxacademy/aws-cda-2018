@@ -28,7 +28,7 @@ def ping(event, context):
         raise e
     else:
         print('Check passed!')
-        sns.publish(Message='Check passed', Phone=PHONE)
+        sns.publish(Message='Check passed', PhoneNumber=PHONE)
         return event['time']
     finally:
         print('Check complete at {}'.format(str(datetime.now())))
