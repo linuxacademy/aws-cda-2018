@@ -23,21 +23,21 @@ function clearNotifications() {
 }
 
 // Add listeners for each button that make the API request
-document.getElementById('bothButton').addEventListener('click', function() {
-    sendData('both');
+document.getElementById('bothButton').addEventListener('click', function(e) {
+    sendData(e, 'both');
 });
 
-document.getElementById('emailButton').addEventListener('click', function() {
-    sendData('email');
+document.getElementById('emailButton').addEventListener('click', function(e) {
+    sendData(e, 'email');
 });
 
-document.getElementById('smsButton').addEventListener('click', function() {
-    sendData('sms');
+document.getElementById('smsButton').addEventListener('click', function(e) {
+    sendData(e, 'sms');
 });
 
-function sendData (pref) {
+function sendData (e, pref) {
     // Prevent the page reloading and clear exisiting notifications
-    event.preventDefault()
+    e.preventDefault()
     clearNotifications()
     // Prepare the appropriate HTTP request to the API with fetch
     // create uses the root /prometheon endpoint and requires a JSON payload
